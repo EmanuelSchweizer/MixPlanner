@@ -4,6 +4,10 @@
   "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
   "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,7 +17,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/EmanuelSchweizer/MixPlanner/issues"
   },
@@ -29,6 +33,8 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "babel-plugin-react-compiler": "^1.0.0",
     "prisma": "^7.5.0"
   }
 }
