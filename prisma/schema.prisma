@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Track {
+  id       Int      @id @default(autoincrement())
+  title    String
+  artist   String
+  bpm      Float?
+  energy   Float?
+  genre    String?
+  coverUrl String?
+  sets     SetTrack[]
+}
+
+model Set {
+  id     Int       @id @default(autoincrement())
+  name   String
+  date   DateTime  @default(now())
+  tracks SetTrack[]
+}
+
+model SetTrack {
+  id      Int    @id @default(autoincrement())
+  setId   Int
+  trackId Int
+  order   Int
+  set     Set    @relation(fields: [setId], references: [id])
+  track   Track  @relation(fields: [trackId], references: [id])
+}
