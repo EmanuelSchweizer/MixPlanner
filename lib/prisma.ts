@@ -6,5 +6,4 @@ const globalForPrisma = globalThis as unknown as {
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient()
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma</content>
-<parameter name="filePath">/Users/emanuelschweizer/repos/MixPlanner/lib/prisma.ts
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
