@@ -7,28 +7,32 @@ datasource db {
 }
 
 model Track {
-  id       Int      @id @default(autoincrement())
-  title    String
-  artist   String
-  bpm      Float?
-  energy   Float?
-  genre    String?
-  coverUrl String?
-  sets     SetTrack[]
+  id        Int      @id @default(autoincrement())
+  title     String
+  artist    String
+  bpm       Int?
+  key       String?      // Camelot System e.g. "8A"
+  energy    Int?         // 1–5 scale, will be entered by the user
+  coverUrl  String?
+  createdAt DateTime @default(now())
+  setTracks SetTrack[]
 }
 
 model Set {
-  id     Int       @id @default(autoincrement())
-  name   String
-  date   DateTime  @default(now())
-  tracks SetTrack[]
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  setTracks SetTrack[]
 }
 
 model SetTrack {
-  id      Int    @id @default(autoincrement())
+  id      Int   @id @default(autoincrement())
   setId   Int
   trackId Int
-  order   Int
-  set     Set    @relation(fields: [setId], references: [id])
-  track   Track  @relation(fields: [trackId], references: [id])
+  order   Int   // Order of the track in the set
+
+  set   Set   @relation(fields: [setId], references: [id])
+  track Track @relation(fields: [trackId], references: [id])
+
+  @@unique([setId, trackId]) // one track can only be added once to a set
 }
